@@ -1,14 +1,14 @@
 package com.opencodely.codelyhexagonal.climber.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EmailAddressTest {
 
     @Test
     void testEmailValidation() {
-        EmailAddress email = new EmailAddress("wrong");
+        assertThrows(ConstraintViolationException.class, () -> new EmailAddress("wrong"));
     }
-
 }
