@@ -9,12 +9,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AscentJpaRepositoryAdapter implements AscentRepository {
 
-    private final AscentJpaRepository ascentJpaRepository;
-    private final AscentJpaMapper mapper;
+  private final AscentJpaRepository ascentJpaRepository;
+  private final AscentJpaMapper mapper;
 
-    @Override
-    public Long save(Ascent ascent) {
-        AscentJpaEntity jpaAscent = ascentJpaRepository.save(mapper.toJpaEntity(ascent));
-        return jpaAscent.getId();
-    }
+  @Override
+  public void save(final Ascent ascent) {
+    ascentJpaRepository.save(mapper.toJpaEntity(ascent));
+  }
 }

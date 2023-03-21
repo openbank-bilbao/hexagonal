@@ -1,5 +1,10 @@
 package com.opencodely.codelyhexagonal.ascent.domain;
 
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public interface AscentRepository {
-    Long save(Ascent ascent);
+
+  void save(@Valid Ascent ascent);
 }
