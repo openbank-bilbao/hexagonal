@@ -23,26 +23,26 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClimberJpaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    private String name;
-    @NotNull
-    private String email;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotNull
+  private String name;
+  @NotNull
+  private String email;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
-            return false;
-        ClimberJpaEntity that = (ClimberJpaEntity) o;
-        return getId() != null && Objects.equals(getId(), that.getId());
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
+      return false;
+    ClimberJpaEntity that = (ClimberJpaEntity) o;
+    return getId() != null && Objects.equals(getId(), that.getId());
+  }
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 }

@@ -12,21 +12,18 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 public final class ClimberCreatedDomainEvent extends DomainEvent {
-    private Data data;
+  private Data data;
 
-    public ClimberCreatedDomainEvent(UUID id, Instant creationTimestamp, Data data) {
-        super(id, creationTimestamp);
-        this.data = data;
-    }
+  public ClimberCreatedDomainEvent(UUID id, Instant creationTimestamp, Data data) {
+    super(id, creationTimestamp);
+    this.data = data;
+  }
 
-    public static ClimberCreatedDomainEvent from(Climber climber) {
-        return new ClimberCreatedDomainEvent(
-            UUID.randomUUID(),
-            Instant.now(),
-            new Data(climber.getId(), climber.getId()));
-    }
+  public static ClimberCreatedDomainEvent from(Climber climber) {
+    return new ClimberCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(climber.getId(), climber.getId()));
+  }
 
 
-    public record Data(long id, long climberId) {
-    }
+  public record Data(long id, long climberId) {
+  }
 }

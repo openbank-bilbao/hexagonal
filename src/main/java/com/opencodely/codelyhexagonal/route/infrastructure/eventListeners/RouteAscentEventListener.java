@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class RouteAscentEventListener {
-    private final AddAscentToRouteApplicationService addAscentToRouteApplicationService;
+  private final AddAscentToRouteApplicationService addAscentToRouteApplicationService;
 
-    @EventListener
-    public void ascentAdded(AscentAddedDomainEvent event) {
-        log.info("Ascent {} will be added to Route {}", event.getData().id(), event.getData().routeId());
-        addAscentToRouteApplicationService.addAscentToRoute(event.getData().routeId(), event.getData().proposedGrade());
-    }
+  @EventListener
+  public void ascentAdded(AscentAddedDomainEvent event) {
+    log.info("Ascent {} will be added to Route {}", event.getData().id(), event.getData().routeId());
+    addAscentToRouteApplicationService.addAscentToRoute(event.getData().routeId(), event.getData().proposedGrade());
+  }
 }

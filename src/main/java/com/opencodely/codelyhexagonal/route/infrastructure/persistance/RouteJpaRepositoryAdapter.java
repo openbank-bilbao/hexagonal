@@ -11,17 +11,18 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class RouteJpaRepositoryAdapter implements RouteRepository {
-    private final RouteJpaRepository repository;
-    private final RouteJpaMapper mapper;
-    @Override
-    public Long save(Route route) {
-        RouteJpaEntity jpaRoute = repository.save(mapper.toJpaEntity(route));
-        return jpaRoute.getId();
-    }
+  private final RouteJpaRepository repository;
+  private final RouteJpaMapper mapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<Route> findById(Long id) {
-        return repository.findById(id).map(mapper::toDomainEntity);
-    }
+  @Override
+  public Long save(Route route) {
+    RouteJpaEntity jpaRoute = repository.save(mapper.toJpaEntity(route));
+    return jpaRoute.getId();
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Optional<Route> findById(Long id) {
+    return repository.findById(id).map(mapper::toDomainEntity);
+  }
 }

@@ -6,12 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public record AddAscentRequest(
-    @NotNull
-    Long climberId,
-    @NotNull
-    Long routeId,
-    Grade proposedGrade,
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
-    LocalDate ascensionDate) {
+public record AddAscentRequest(@NotNull Long climberId, @NotNull Long routeId, Grade proposedGrade,
+                               @DateTimeFormat(pattern = "dd-mm-yyyy") LocalDate ascensionDate) {
 }

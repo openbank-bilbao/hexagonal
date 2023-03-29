@@ -26,9 +26,9 @@ public class AscentJpaMapper implements JpaMapper<Ascent, AscentJpaEntity> {
   @Override
   public Ascent toDomainEntity(final AscentJpaEntity jpaAscent) {
     final AscentClimber ascentClimber =
-        new AscentClimber(jpaAscent.getClimber().getId(), jpaAscent.getClimber().getName());
+      new AscentClimber(jpaAscent.getClimber().getId(), jpaAscent.getClimber().getName());
     final AscentRoute ascentRoute = new AscentRoute(jpaAscent.getRoute().getId(), jpaAscent.getRoute().getName());
     return new Ascent(new AscentId(jpaAscent.getId()), ascentClimber, ascentRoute, jpaAscent.getProposedGrade(),
-        new AscensionDate(jpaAscent.getAscensionDate()));
+      new AscensionDate(jpaAscent.getAscensionDate()));
   }
 }

@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClimberJpaMapper implements JpaMapper<Climber, ClimberJpaEntity> {
 
-    public ClimberJpaEntity toJpaEntity(Climber climber) {
-        return new ClimberJpaEntity(climber.getId(), climber.getName(), climber.getEmail().value());
-    }
+  public ClimberJpaEntity toJpaEntity(Climber climber) {
+    return new ClimberJpaEntity(climber.getId(), climber.getName(), climber.getEmail().value());
+  }
 
-    public Climber toDomainEntity(ClimberJpaEntity jpaClimber) {
-        return new Climber(jpaClimber.getId(), jpaClimber.getName(), new EmailAddress(jpaClimber.getEmail()));
-    }
+  public Climber toDomainEntity(ClimberJpaEntity jpaClimber) {
+    return new Climber(jpaClimber.getId(), jpaClimber.getName(), new EmailAddress(jpaClimber.getEmail()));
+  }
 }

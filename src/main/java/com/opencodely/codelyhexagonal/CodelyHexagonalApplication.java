@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CodelyHexagonalApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CodelyHexagonalApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(CodelyHexagonalApplication.class, args);
+  }
 
 }
