@@ -6,14 +6,15 @@ import com.opencodely.codelyhexagonal.shared.domain.event.AscentAddedDomainEvent
 import com.opencodely.codelyhexagonal.shared.domain.event.DomainEvent;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -30,12 +31,8 @@ public final class Ascent implements EventStore {
   private Grade proposedGrade;
   private AscensionDate ascensionDate;
 
-  public static Ascent createDraft(
-      final AscentId ascentId,
-      final long climberId,
-      final long routeId,
-      final Grade proposedGrade,
-      final LocalDate ascensionDate) {
+  public static Ascent createDraft(final AscentId ascentId, final long climberId, final long routeId,
+    final Grade proposedGrade, final LocalDate ascensionDate) {
     final Ascent ascent = new Ascent();
     ascent.ascentId = ascentId;
     ascent.climber = new AscentClimber(climberId, null);
@@ -45,11 +42,8 @@ public final class Ascent implements EventStore {
     return ascent;
   }
 
-  public static Ascent createDraft(
-      final AscentId ascentId,
-      final long climberId,
-      final long routeId,
-      final Grade proposedGrade) {
+  public static Ascent createDraft(final AscentId ascentId, final long climberId, final long routeId,
+    final Grade proposedGrade) {
     return createDraft(ascentId, climberId, routeId, proposedGrade, LocalDate.now());
   }
 

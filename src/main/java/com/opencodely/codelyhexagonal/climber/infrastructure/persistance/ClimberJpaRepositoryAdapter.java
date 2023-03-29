@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ClimberJpaRepositoryAdapter implements ClimberRepository {
 
-    private final ClimberJpaRepository climberJpaRepository;
-    private final ClimberJpaMapper mapper;
+  private final ClimberJpaRepository climberJpaRepository;
+  private final ClimberJpaMapper mapper;
 
-    @Override
-    public Long save(Climber climber) {
-        ClimberJpaEntity jpaClimber = climberJpaRepository.save(mapper.toJpaEntity(climber));
-        return jpaClimber.getId();
-    }
+  @Override
+  public Long save(Climber climber) {
+    ClimberJpaEntity jpaClimber = climberJpaRepository.save(mapper.toJpaEntity(climber));
+    return jpaClimber.getId();
+  }
 }

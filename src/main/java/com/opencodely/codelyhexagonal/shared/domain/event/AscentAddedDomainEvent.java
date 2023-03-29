@@ -2,12 +2,13 @@ package com.opencodely.codelyhexagonal.shared.domain.event;
 
 import com.opencodely.codelyhexagonal.ascent.domain.Ascent;
 import com.opencodely.codelyhexagonal.shared.domain.Grade;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -22,9 +23,8 @@ public final class AscentAddedDomainEvent extends DomainEvent {
   }
 
   public static AscentAddedDomainEvent from(final Ascent ascent) {
-    return new AscentAddedDomainEvent(
-        UUID.randomUUID(),
-        Instant.now(), new Data(ascent.getAscentId().id(), ascent.getAscensionDate().date(), ascent.getClimber().id(),
+    return new AscentAddedDomainEvent(UUID.randomUUID(), Instant.now(),
+      new Data(ascent.getAscentId().id(), ascent.getAscensionDate().date(), ascent.getClimber().id(),
         ascent.getRoute().id(), ascent.getProposedGrade()));
   }
 
