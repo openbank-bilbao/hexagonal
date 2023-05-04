@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class ClimberController {
-    private final CreateClimberApplicationService createClimberService;
+  private final CreateClimberApplicationService createClimberService;
 
-    @PostMapping(ClimberUrl.BASE_V1)
-    @ResponseStatus(HttpStatus.CREATED)
-    public ClimberCreatedResponse create(@RequestBody @Valid ClimberCreateRequest climberCreateRequest) {
-        Long id = createClimberService.create(climberCreateRequest.name(),
-            new EmailAddress(climberCreateRequest.email()));
-        return ClimberCreatedResponse.from(ClimberUrl.BASE_V1, id);
-    }
+  @PostMapping(ClimberUrl.BASE_V1)
+  @ResponseStatus(HttpStatus.CREATED)
+  public ClimberCreatedResponse create(@RequestBody @Valid ClimberCreateRequest climberCreateRequest) {
+    Long id = createClimberService.create(climberCreateRequest.name(), new EmailAddress(climberCreateRequest.email()));
+    return ClimberCreatedResponse.from(ClimberUrl.BASE_V1, id);
+  }
 }

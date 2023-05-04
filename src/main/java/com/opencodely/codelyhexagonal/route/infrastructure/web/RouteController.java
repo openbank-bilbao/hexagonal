@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class RouteController {
-    private final CreateRouteApplicationService createRouteService;
+  private final CreateRouteApplicationService createRouteService;
 
-    @PostMapping(RouteUrl.BASE_V1)
-    @ResponseStatus(HttpStatus.CREATED)
-    public RouteCreatedResponse create(@RequestBody @Valid RouteCreateRequest routeCreateRequest) {
-        Long id = createRouteService.create(routeCreateRequest.name(), routeCreateRequest.crag(),
-            routeCreateRequest.baseGrade());
-        return RouteCreatedResponse.from(RouteUrl.BASE_V1, id);
-    }
+  @PostMapping(RouteUrl.BASE_V1)
+  @ResponseStatus(HttpStatus.CREATED)
+  public RouteCreatedResponse create(@RequestBody @Valid RouteCreateRequest routeCreateRequest) {
+    Long id =
+      createRouteService.create(routeCreateRequest.name(), routeCreateRequest.crag(), routeCreateRequest.baseGrade());
+    return RouteCreatedResponse.from(RouteUrl.BASE_V1, id);
+  }
 }

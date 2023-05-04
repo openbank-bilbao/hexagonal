@@ -11,20 +11,18 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public final class RouteCreatedDomainEvent extends DomainEvent{
-    private Data data;
+public final class RouteCreatedDomainEvent extends DomainEvent {
+  private Data data;
 
-    public RouteCreatedDomainEvent(UUID id, Instant creationTimestamp, Data data) {
-        super(id, creationTimestamp);
-        this.data = data;
-    }
+  public RouteCreatedDomainEvent(UUID id, Instant creationTimestamp, Data data) {
+    super(id, creationTimestamp);
+    this.data = data;
+  }
 
-    public static RouteCreatedDomainEvent from(Route route) {
-        return new RouteCreatedDomainEvent(
-            UUID.randomUUID(),
-            Instant.now(),
-            new Data(route.getId(), route.getName())
-        );
-    }
-    public record Data(long id, String name) {}
+  public static RouteCreatedDomainEvent from(Route route) {
+    return new RouteCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(route.getId(), route.getName()));
+  }
+
+  public record Data(long id, String name) {
+  }
 }

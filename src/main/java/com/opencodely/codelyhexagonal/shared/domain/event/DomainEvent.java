@@ -10,8 +10,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-public abstract sealed class DomainEvent permits AscentAddedDomainEvent, ClimberCreatedDomainEvent, RouteCreatedDomainEvent{
-    private UUID id;
-    private Instant creationTimestamp;
-    abstract Object getData();
+public abstract sealed class DomainEvent
+  permits AscentAddedDomainEvent, ClimberCreatedDomainEvent, RouteCreatedDomainEvent {
+  private UUID id;
+  private Instant creationTimestamp;
+
+  abstract Object getData();
 }

@@ -10,13 +10,13 @@ import java.util.Set;
 
 public interface Validatable {
 
-    default void validate(Validatable this) {
-        try(ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
-            Validator validator = factory.getValidator();
-            Set<ConstraintViolation<Validatable>> violations = validator.validate(this);
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        }
+  default void validate(Validatable this) {
+    try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+      Validator validator = factory.getValidator();
+      Set<ConstraintViolation<Validatable>> violations = validator.validate(this);
+      if (!violations.isEmpty()) {
+        throw new ConstraintViolationException(violations);
+      }
     }
+  }
 }
