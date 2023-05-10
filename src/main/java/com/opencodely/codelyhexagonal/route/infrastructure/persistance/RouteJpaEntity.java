@@ -14,8 +14,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -26,8 +29,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class RouteJpaEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id;
   private String name;
   private String crag;
   @Enumerated(EnumType.STRING)

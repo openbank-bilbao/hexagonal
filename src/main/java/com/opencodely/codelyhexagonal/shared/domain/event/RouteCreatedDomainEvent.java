@@ -20,9 +20,9 @@ public final class RouteCreatedDomainEvent extends DomainEvent {
   }
 
   public static RouteCreatedDomainEvent from(Route route) {
-    return new RouteCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(route.getId(), route.getName()));
+    return new RouteCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(route.getId().id(), route.getName()));
   }
 
-  public record Data(long id, String name) {
+  public record Data(UUID id, String name) {
   }
 }

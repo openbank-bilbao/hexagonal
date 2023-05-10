@@ -20,10 +20,10 @@ public final class ClimberCreatedDomainEvent extends DomainEvent {
   }
 
   public static ClimberCreatedDomainEvent from(Climber climber) {
-    return new ClimberCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(climber.getId(), climber.getId()));
+    return new ClimberCreatedDomainEvent(UUID.randomUUID(), Instant.now(), new Data(climber.getId().id(), climber.getName()));
   }
 
 
-  public record Data(long id, long climberId) {
+  public record Data(UUID id, String climberName) {
   }
 }

@@ -2,52 +2,44 @@ package com.opencodely.codelyhexagonal.ascent.domain;
 
 import com.opencodely.codelyhexagonal.shared.domain.EventStore;
 import com.opencodely.codelyhexagonal.shared.domain.Grade;
+import com.opencodely.codelyhexagonal.shared.domain.Validatable;
 import com.opencodely.codelyhexagonal.shared.domain.event.AscentAddedDomainEvent;
 import com.opencodely.codelyhexagonal.shared.domain.event.DomainEvent;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class Ascent implements EventStore {
-
+public final class Ascent implements EventStore, Validatable {
+  @Setter(AccessLevel.NONE)
   @Getter(AccessLevel.NONE)
   private final List<DomainEvent> events = new ArrayList<>();
   @NotNull
-  @Valid
-  private AscentId ascentId;
+  private AscentId id;
+  @NotNull
   private AscentClimber climber;
+  @NotNull
   private AscentRoute route;
   private Grade proposedGrade;
   private AscensionDate ascensionDate;
 
-  public static Ascent createDraft(final AscentId ascentId, final long climberId, final long routeId,
-    final Grade proposedGrade, final LocalDate ascensionDate) {
+  public static Ascent createAscent(final UUID ascentId, final UUID climberId, final UUID routeId,
+                                    final Grade proposedGrade, final LocalDate ascensionDate) {
     final Ascent ascent = new Ascent();
-    ascent.ascentId = ascentId;
-    ascent.climber = new AscentClimber(climberId, null);
-    ascent.route = new AscentRoute(routeId, null);
+    ascent.id = new AscentId(ascentId);
+    ascent.climber = new AscentClimber(climberId);
+    ascent.route = new AscentRoute(routeId);
     ascent.proposedGrade = proposedGrade;
     ascent.ascensionDate = new AscensionDate(ascensionDate);
+    ascent.recordAscentCreation();
     return ascent;
   }
 
-  public static Ascent createDraft(final AscentId ascentId, final long climberId, final long routeId,
-    final Grade proposedGrade) {
-    return createDraft(ascentId, climberId, routeId, proposedGrade, LocalDate.now());
-  }
-
-  public void recordNewAscent() {
+  private void recordAscentCreation() {
     recordEvent(AscentAddedDomainEvent.from(this));
   }
 
@@ -59,5 +51,18 @@ public final class Ascent implements EventStore {
   @Override
   public void recordEvent(final DomainEvent event) {
     events.add(event);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Ascent ascent = (Ascent) o;
+    return Objects.equals(id, ascent.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }

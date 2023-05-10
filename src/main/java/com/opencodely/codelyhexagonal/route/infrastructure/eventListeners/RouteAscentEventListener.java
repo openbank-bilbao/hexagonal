@@ -1,6 +1,6 @@
 package com.opencodely.codelyhexagonal.route.infrastructure.eventListeners;
 
-import com.opencodely.codelyhexagonal.route.aplication.AddAscentToRouteApplicationService;
+import com.opencodely.codelyhexagonal.route.application.AddAscentToRouteApplicationService;
 import com.opencodely.codelyhexagonal.shared.domain.event.AscentAddedDomainEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

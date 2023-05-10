@@ -24,11 +24,11 @@ public final class AscentAddedDomainEvent extends DomainEvent {
 
   public static AscentAddedDomainEvent from(final Ascent ascent) {
     return new AscentAddedDomainEvent(UUID.randomUUID(), Instant.now(),
-      new Data(ascent.getAscentId().id(), ascent.getAscensionDate().date(), ascent.getClimber().id(),
+      new Data(ascent.getId().id(), ascent.getAscensionDate().date(), ascent.getClimber().id(),
         ascent.getRoute().id(), ascent.getProposedGrade()));
   }
 
-  public record Data(UUID id, LocalDate ascensionDate, long climberId, long routeId, Grade proposedGrade) {
+  public record Data(UUID id, LocalDate ascensionDate, UUID climberId, UUID routeId, Grade proposedGrade) {
 
   }
 }
