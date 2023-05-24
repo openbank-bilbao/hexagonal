@@ -5,16 +5,14 @@ import com.opencodely.codelyhexagonal.shared.domain.Validatable;
 import com.opencodely.codelyhexagonal.shared.domain.event.ClimberCreatedDomainEvent;
 import com.opencodely.codelyhexagonal.shared.domain.event.DomainEvent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -25,19 +23,21 @@ public class Climber implements EventStore, Validatable {
   @Getter(AccessLevel.NONE)
   private final List<DomainEvent> events = new ArrayList<>();
   @Setter(AccessLevel.NONE)
-  private Long id;
+  @NotNull
+  private ClimberId id;
   @NotBlank
   private String name;
+  @NotNull
   private EmailAddress email;
 
-  public static Climber draftClimber(final String name, final EmailAddress email) {
-    Climber climber = new Climber(null, name, email);
+  public static Climber createClimber(final UUID id, String name, final String email) {
+    Climber climber = new Climber(new ClimberId(id), name, new EmailAddress(email));
     climber.validate();
+    climber.recordClimberCreation();
     return climber;
   }
 
-  public void recordClimberCreationEvent(long id) {
-    this.id = id;
+  private void recordClimberCreation() {
     recordEvent(ClimberCreatedDomainEvent.from(this));
   }
 

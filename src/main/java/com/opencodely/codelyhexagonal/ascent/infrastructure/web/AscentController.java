@@ -1,6 +1,6 @@
 package com.opencodely.codelyhexagonal.ascent.infrastructure.web;
 
-import com.opencodely.codelyhexagonal.ascent.aplication.AddAscentApplicationService;
+import com.opencodely.codelyhexagonal.ascent.application.AddAscentApplicationService;
 import com.opencodely.codelyhexagonal.shared.domain.IdProvider;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,8 @@ public class AscentController {
   @ResponseStatus(HttpStatus.CREATED)
   public AddAscentResponse create(final @RequestBody @Valid AddAscentRequest request) {
     final var uuid = idProvider.provide();
-    addAscentService.addAscent(uuid, request.climberId(), request.routeId(), request.proposedGrade());
+    addAscentService.addAscent(uuid, UUID.fromString(request.climberId()), UUID.fromString(request.routeId()),
+      request.proposedGrade(), request.ascensionDate());
     return AddAscentResponse.from(AscentUrl.BASE_V1, uuid);
   }
 }

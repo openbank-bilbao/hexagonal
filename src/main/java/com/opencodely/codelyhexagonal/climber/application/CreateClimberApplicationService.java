@@ -1,4 +1,4 @@
-package com.opencodely.codelyhexagonal.climber.aplication;
+package com.opencodely.codelyhexagonal.climber.application;
 
 import com.opencodely.codelyhexagonal.climber.domain.Climber;
 import com.opencodely.codelyhexagonal.climber.domain.ClimberRepository;
@@ -7,6 +7,8 @@ import com.opencodely.codelyhexagonal.shared.application.UseCase;
 import com.opencodely.codelyhexagonal.shared.domain.DomainEventPublisher;
 import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
+
 @UseCase
 @RequiredArgsConstructor
 public class CreateClimberApplicationService {
@@ -14,11 +16,9 @@ public class CreateClimberApplicationService {
   private final ClimberRepository climberRepository;
   private final DomainEventPublisher eventPublisher;
 
-  public Long create(String name, EmailAddress email) {
-    Climber climber = Climber.draftClimber(name, email);
-    Long id = climberRepository.save(climber);
-    climber.recordClimberCreationEvent(id);
+  public void create(UUID id, String name, String email) {
+    Climber climber = Climber.createClimber(id, name, email);
+    climberRepository.save(climber);
     eventPublisher.publish(climber.pullEvents());
-    return id;
   }
 }

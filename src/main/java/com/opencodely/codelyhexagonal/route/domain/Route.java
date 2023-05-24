@@ -6,16 +6,9 @@ import com.opencodely.codelyhexagonal.shared.domain.Validatable;
 import com.opencodely.codelyhexagonal.shared.domain.event.DomainEvent;
 import com.opencodely.codelyhexagonal.shared.domain.event.RouteCreatedDomainEvent;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -25,7 +18,8 @@ public class Route implements EventStore, Validatable {
   @Setter(AccessLevel.NONE)
   @Getter(AccessLevel.NONE)
   private final List<DomainEvent> events = new ArrayList<>();
-  private Long id;
+  @NotNull
+  private RouteId id;
   @NotNull
   private String name;
   @NotNull
@@ -35,9 +29,10 @@ public class Route implements EventStore, Validatable {
   private Grade consensusGrade;
   private int ascentNumber = 0;
 
-  public static Route draftRoute(String name, String crag, Grade baseGrade) {
-    Route route = new Route(null, name, new Crag(crag), baseGrade, baseGrade, 0);
+  public static Route createRoute(UUID id, String name, String crag, Grade baseGrade) {
+    Route route = new Route(new RouteId(id), name, new Crag(crag), baseGrade, baseGrade, 0);
     route.validate();
+    route.recordRouteCreatedEvent();
     return route;
   }
 
@@ -45,8 +40,7 @@ public class Route implements EventStore, Validatable {
     ++ascentNumber;
   }
 
-  public void recordRouteCreatedEvent(long id) {
-    this.id = id;
+  private void recordRouteCreatedEvent() {
     recordEvent(RouteCreatedDomainEvent.from(this));
   }
 

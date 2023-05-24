@@ -5,6 +5,8 @@ import com.opencodely.codelyhexagonal.climber.domain.ClimberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class ClimberJpaRepositoryAdapter implements ClimberRepository {
@@ -13,8 +15,7 @@ public class ClimberJpaRepositoryAdapter implements ClimberRepository {
   private final ClimberJpaMapper mapper;
 
   @Override
-  public Long save(Climber climber) {
-    ClimberJpaEntity jpaClimber = climberJpaRepository.save(mapper.toJpaEntity(climber));
-    return jpaClimber.getId();
+  public void save(Climber climber) {
+    climberJpaRepository.save(mapper.toJpaEntity(climber));
   }
 }

@@ -4,8 +4,6 @@ import com.opencodely.codelyhexagonal.shared.domain.Grade;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,7 +14,6 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
-
 @Getter
 @Setter
 @Entity
@@ -26,8 +23,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class RouteJpaEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id;
   private String name;
   private String crag;
   @Enumerated(EnumType.STRING)

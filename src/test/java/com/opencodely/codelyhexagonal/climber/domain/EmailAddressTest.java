@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class EmailAddressTest {
 
     @Test
-    void testEmailValidation() {
+    void should_throw_on_malformed_email() {
         assertThrows(ConstraintViolationException.class, () -> new EmailAddress("wrong"));
     }
 }

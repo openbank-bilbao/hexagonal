@@ -10,15 +10,17 @@ import com.opencodely.codelyhexagonal.route.infrastructure.persistance.RouteJpaE
 import com.opencodely.codelyhexagonal.shared.infrastructure.JpaMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class AscentJpaMapper implements JpaMapper<Ascent, AscentJpaEntity> {
 
   @Override
   public AscentJpaEntity toJpaEntity(final Ascent ascent) {
     return AscentJpaEntity.builder()
-        .id(ascent.getAscentId().id())
-        .climber(ClimberJpaEntity.builder().id(ascent.getClimber().id()).build())
-        .route(RouteJpaEntity.builder().id(ascent.getRoute().id()).build())
+        .id(ascent.getId().id().toString())
+        .climber(ClimberJpaEntity.builder().id(ascent.getClimber().id().toString()).build())
+        .route(RouteJpaEntity.builder().id(ascent.getRoute().id().toString()).build())
         .proposedGrade(ascent.getProposedGrade())
         .ascensionDate(ascent.getAscensionDate().date()).build();
   }
@@ -26,9 +28,9 @@ public class AscentJpaMapper implements JpaMapper<Ascent, AscentJpaEntity> {
   @Override
   public Ascent toDomainEntity(final AscentJpaEntity jpaAscent) {
     final AscentClimber ascentClimber =
-      new AscentClimber(jpaAscent.getClimber().getId(), jpaAscent.getClimber().getName());
-    final AscentRoute ascentRoute = new AscentRoute(jpaAscent.getRoute().getId(), jpaAscent.getRoute().getName());
-    return new Ascent(new AscentId(jpaAscent.getId()), ascentClimber, ascentRoute, jpaAscent.getProposedGrade(),
+      new AscentClimber(UUID.fromString(jpaAscent.getClimber().getId()), jpaAscent.getClimber().getName());
+    final AscentRoute ascentRoute = new AscentRoute(UUID.fromString(jpaAscent.getRoute().getId()), jpaAscent.getRoute().getName());
+    return new Ascent(new AscentId(UUID.fromString(jpaAscent.getId())), ascentClimber, ascentRoute, jpaAscent.getProposedGrade(),
       new AscensionDate(jpaAscent.getAscensionDate()));
   }
 }

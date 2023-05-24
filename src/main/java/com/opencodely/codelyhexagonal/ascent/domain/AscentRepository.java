@@ -6,5 +6,5 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public interface AscentRepository {
 
-  void save(@Valid Ascent ascent);
+  void save(Ascent ascent);
 }

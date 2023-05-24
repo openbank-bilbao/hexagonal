@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -15,14 +16,13 @@ public class RouteJpaRepositoryAdapter implements RouteRepository {
   private final RouteJpaMapper mapper;
 
   @Override
-  public Long save(Route route) {
-    RouteJpaEntity jpaRoute = repository.save(mapper.toJpaEntity(route));
-    return jpaRoute.getId();
+  public void save(Route route) {
+    repository.save(mapper.toJpaEntity(route));
   }
 
   @Override
   @Transactional(readOnly = true)
-  public Optional<Route> findById(Long id) {
+  public Optional<Route> findById(String id) {
     return repository.findById(id).map(mapper::toDomainEntity);
   }
 }

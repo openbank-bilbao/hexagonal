@@ -4,8 +4,7 @@ import java.time.LocalDate;
 
 public record AscensionDate(LocalDate date) {
 
-  public AscensionDate(LocalDate date) {
-    this.date = date;
+  public AscensionDate {
     if (date.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("The ascension date can not be a future date");
     }
