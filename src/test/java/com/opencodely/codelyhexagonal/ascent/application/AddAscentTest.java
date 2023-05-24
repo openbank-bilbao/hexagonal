@@ -37,8 +37,7 @@ class AddAscentTest {
   private AddAscentApplicationService service;
 
   @Test
-  @DisplayName("Given correct arguments when addAscent is called a valid Ascent is saved")
-  void testAddAscent() {
+  void should_save_on_ascent_creation() {
     //given
     UUID ascentId = UUID.randomUUID();
     UUID climberId = UUID.randomUUID();
@@ -59,8 +58,7 @@ class AddAscentTest {
   }
 
   @Test
-  @DisplayName("Given correct arguments when addAscent is called a valid event is published")
-  void testEventDomainPublished() {
+  void should_publish_event_on_ascent_creation() {
     //given
     UUID ascentId = UUID.randomUUID();
     UUID climberId = UUID.randomUUID();
@@ -81,8 +79,7 @@ class AddAscentTest {
   }
 
   @Test
-  @DisplayName("Given a future ascent date, an error is thrown")
-  void testFutureAscentDate() {
+  void should_throw_on_future_ascent_date() {
     //given
     LocalDate ascentDate = LocalDate.now().plusDays(1);
 

@@ -36,7 +36,7 @@ public class AscentPersistenceIT {
     "INSERT INTO climber (id, name, email) VALUES ('0f14d0ab-9605-4a62-a9e4-5ed26688389b', 'Jon', 'jon@sputnik.com')",
     "INSERT INTO route (id, name, crag, base_grade, ascent_number) VALUES ('0f14d0ab-9605-4a62-a9e4-5ed26688389b', 'Pinches', 'Valde', 'GRADE_6C', 0)"
   })
-  void testSaveClimber() {
+  void should_save() {
     Ascent ascent = AscentSupplier.ascentBuilder()
       .climberId("0f14d0ab-9605-4a62-a9e4-5ed26688389b")
       .routeId("0f14d0ab-9605-4a62-a9e4-5ed26688389b")

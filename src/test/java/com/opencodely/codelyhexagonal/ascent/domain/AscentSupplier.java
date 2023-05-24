@@ -4,7 +4,9 @@ import com.opencodely.codelyhexagonal.shared.domain.Grade;
 
 import java.time.LocalDate;
 import java.util.UUID;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class AscentSupplier {
 
   public static Ascent create(String climberId, String routeId) {
