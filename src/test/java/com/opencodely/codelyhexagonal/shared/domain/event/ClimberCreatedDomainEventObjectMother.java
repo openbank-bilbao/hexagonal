@@ -14,7 +14,7 @@ public final class ClimberCreatedDomainEventObjectMother {
     return new ClimberCreatedDomainEvent(
       UUID.randomUUID(),
       Instant.now(),
-      new Data(climberExpected.getId().id(), climberExpected.getName().value())
+      new Data(climberExpected.getId().id(), climberExpected.getName().getValue())
     );
   }
 }

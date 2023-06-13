@@ -27,7 +27,7 @@ public final class ClimberCreatedDomainEvent extends DomainEvent {
     return new ClimberCreatedDomainEvent(
       UUID.randomUUID(),
       Instant.now(),
-      new Data(climber.getId().id(), climber.getName().value())
+      new Data(climber.getId().id(), climber.getName().getValue())
     );
   }
 

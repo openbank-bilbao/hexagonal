@@ -1,14 +1,11 @@
 package com.opencodely.codelyhexagonal.climber.domain;
 
-import com.opencodely.codelyhexagonal.shared.domain.Validatable;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
-public record ClimberName(@NotEmpty String value) implements Validatable {
+public class ClimberName extends ValueObject<String> {
 
-  public ClimberName(@NotNull final String value) {
-    this.value = value;
-    validate();
+  public ClimberName(@NotEmpty final String value) {
+    super(value);
   }
 
 }

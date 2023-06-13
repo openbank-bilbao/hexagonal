@@ -41,7 +41,7 @@ class CreateClimberApplicationServiceTest {
     //given
     final var climberExpected = ClimberObjectMother.random();
     final var id = climberExpected.getId().id();
-    final var name = climberExpected.getName().value();
+    final var name = climberExpected.getName().getValue();
     final var email = climberExpected.getEmail().value();
     doNothing().when(climberRepository).save(climberExpected);
 
@@ -59,7 +59,7 @@ class CreateClimberApplicationServiceTest {
     //given
     final var climberExpected = ClimberObjectMother.random();
     final var id = climberExpected.getId().id();
-    final var name = climberExpected.getName().value();
+    final var name = climberExpected.getName().getValue();
     final var email = climberExpected.getEmail().value();
     doNothing().when(climberRepository).save(climberExpected);
 

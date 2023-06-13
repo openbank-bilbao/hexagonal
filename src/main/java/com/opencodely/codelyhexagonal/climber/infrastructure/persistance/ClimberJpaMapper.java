@@ -14,7 +14,7 @@ public class ClimberJpaMapper implements JpaMapper<Climber, ClimberJpaEntity> {
   public ClimberJpaEntity toJpaEntity(final Climber climber) {
     return new ClimberJpaEntity(
       climber.getId().id().toString(),
-      climber.getName().value(),
+      climber.getName().getValue(),
       climber.getEmail().value()
     );
   }
